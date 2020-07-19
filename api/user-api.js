@@ -9,14 +9,13 @@ const CREATE_USER = '/create_user'
 
 router.get(GET_ALL_USER, async ctx => {
   try {
-    const result = User.getAll()
+    const result = await User.findAll()
     if (result) {
       ctx.body = {
         code: 200,
         data: result
       }
     } else {
-      console.log('[mysql] no data', result)
       ctx.body = {
         code: 200,
         data: []
@@ -31,8 +30,8 @@ router.get(GET_ALL_USER, async ctx => {
 })
 
 router.get(CREATE_USER, async ctx => {
-  const { username, password } = ctx.request.body
   try {
+    const { username, password } = ctx.request.body
     if (!username) {
       ctx.body = { code: -1, msg: '缺失用户名', data: ctx.request.body }
     }
@@ -45,7 +44,6 @@ router.get(CREATE_USER, async ctx => {
     })
     ctx.body = { code: 200, msg: '添加成功', data: result }
   } catch (err) {
-    console.log(err)
     ctx.body = { code: 500, msg: '服务器内部错误', message: err.message }
   }
 })
