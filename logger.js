@@ -15,6 +15,10 @@ class Logger {
 
   log (ctx) {
     const res = ctx.body
+    if (!res) {
+      console.log(`[${this._getTime()}] Error '${this.url}' Internal Server Error`)
+      return
+    }
     const { code, msg, data } = res
     let logMsg = ''
     if (code === 200) {
