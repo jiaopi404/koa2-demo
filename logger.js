@@ -1,4 +1,5 @@
 const moment = require('moment')
+const colors = require('colors/safe') // 打印控制台添加颜色
 
 class Logger {
   constructor ({ url }) {
@@ -16,15 +17,15 @@ class Logger {
   log (ctx) {
     const res = ctx.body
     if (!res) {
-      console.log(`[${this._getTime()}] Error '${this.url}' Internal Server Error`)
+      console.log(colors.red(`[${this._getTime()}] Error '${this.url}' Internal Server Error`))
       return
     }
     const { code, msg, data } = res
     let logMsg = ''
     if (code === 200) {
-      logMsg = `[${this._getTime()}] Success '${this.url}' ${JSON.stringify(data)}`
+      logMsg = colors.magenta(`[${this._getTime()}] Success '${this.url}' ${JSON.stringify(data)}`)
     } else {
-      logMsg = `[${this._getTime()}] Error '${this.url}' ${msg}`
+      logMsg = colors.bgCyan(`[${this._getTime()}] Error '${this.url}' ${msg}`.brightRed)
     }
     console.log(logMsg)
   }
