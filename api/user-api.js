@@ -30,6 +30,7 @@ router.get(GET_ALL_USER, async ctx => {
   }
 })
 
+// TODO: 将创建用户的逻辑封装到 Model 层, 本初只做必要的验证
 router.get(CREATE_USER, async ctx => {
   try {
     const { username, password } = ctx.request.body

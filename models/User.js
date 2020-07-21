@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/db')
 
+// TODO: 尝试改写为 class 样式
 const User = sequelize.define('users', {
   id: {
     type: DataTypes.INTEGER,
