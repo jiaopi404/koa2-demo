@@ -33,6 +33,8 @@ class Logger {
   _getTime () {
     return moment().format('YYYY-MM-DD hh:mm:ss')
   }
+  // TODO: 将日期记录到 log 文件夹的 log.txt 中
+  _writeToLog () {}
 }
 
 module.exports = Logger
