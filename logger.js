@@ -20,12 +20,12 @@ class Logger {
       console.log(colors.red(`[${this._getTime()}] Error '${this.url}' Internal Server Error`))
       return
     }
-    const { code, msg, data } = res
+    const { code, msg, data, message } = res
     let logMsg = ''
     if (code === 200) {
       logMsg = colors.magenta(`[${this._getTime()}] Success '${this.url}' ${JSON.stringify(data)}`)
     } else {
-      logMsg = colors.bgCyan(`[${this._getTime()}] Error '${this.url}' ${msg}`.brightRed)
+      logMsg = colors.red(`[${this._getTime()}] Error '${this.url}' ${msg} ${message}`)
     }
     console.log(logMsg)
   }
