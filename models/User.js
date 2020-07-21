@@ -19,6 +19,18 @@ const User = sequelize.define('users', {
   timestamp: true
 })
 
+User.getUserInfoById = async function (id) {
+  const result = await User.findAll({
+    where: {
+      id: id
+    }
+  })
+  if (result.length === 0) {
+    throw new Error('无数据')
+  } else {
+    return result[0]
+  }
+}
 // 创建表
 // User.sync({
 //   // 默认 false, true 则是删除原有的表, 再创建
