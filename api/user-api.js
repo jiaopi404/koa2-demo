@@ -90,7 +90,7 @@ router.get(GET_USER_BY_ID, async ctx => {
       ctx.body = { code: -1, msg: '缺失 id 参数', data: {} }
       return
     }
-    const queryResult = await User.getUserInfoById(id)
+    const queryResult = await User.getUserInfoById({ id })
     ctx.body = { code: 200, data: queryResult }
   } catch (err) {
     ctx.body = { code: 500, msg: '服务器内部错误', message: err.message }
@@ -100,7 +100,8 @@ router.get(GET_USER_BY_ID, async ctx => {
 router.get(GET_USER_INFO, async ctx => {
   try {
     const { id } = ctx.JWT
-    const queryResult = await User.getUserInfoById(id)
+    console.log('jwt id: ', id)
+    const queryResult = await User.getUserInfoById({ id })
     ctx.body = { code: 200, data: queryResult }
   } catch (err) {
     ctx.body = { code: 500, msg: '服务器内部错误', message: err.message }
