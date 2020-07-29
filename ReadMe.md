@@ -13,3 +13,5 @@ model: ✔️
 websocket: ✔️
 error-constant: ❌
 404-page: ❌
+
+daily
